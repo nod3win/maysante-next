@@ -10,10 +10,7 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   images: {
-    remotePatterns: [
-      { protocol: "https", hostname: "cdn.sanity.io" },
-      { protocol: "https", hostname: "placehold.co" },
-    ],
+    remotePatterns: [{ protocol: "https", hostname: "placehold.co" }],
   },
   async headers() {
     return [

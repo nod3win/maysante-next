@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
-import Script from "next/script";
 import "./globals.css";
 import Providers from "@/components/providers";
 import StickyCallButton from "@/components/StickyCallButton";
+import AnalyticsTracker from "@/components/AnalyticsTracker";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -109,9 +109,6 @@ const jsonLd = {
   ],
 };
 
-const umamiUrl = process.env.NEXT_PUBLIC_UMAMI_URL;
-const umamiWebsiteId = process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID;
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -128,13 +125,7 @@ export default function RootLayout({
       <body className={plusJakartaSans.variable}>
         <Providers>{children}</Providers>
         <StickyCallButton />
-        {umamiUrl && umamiWebsiteId && (
-          <Script
-            src={`${umamiUrl}/script.js`}
-            data-website-id={umamiWebsiteId}
-            strategy="afterInteractive"
-          />
-        )}
+        <AnalyticsTracker />
       </body>
     </html>
   );

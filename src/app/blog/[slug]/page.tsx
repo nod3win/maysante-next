@@ -3,11 +3,13 @@ import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import sanitizeHtml from "sanitize-html";
 import { getPublishedArticleBySlug } from "@/lib/articles";
+import { formatDateFr } from "@/lib/format";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import type { Metadata } from "next";
 
-export const dynamic = "force-dynamic";
+// ISR : chaque article est mis en cache et rafraîchi au plus toutes les 60 s.
+export const revalidate = 60;
 
 export async function generateMetadata({
   params,
@@ -68,11 +70,7 @@ export default async function BlogPostPage({
               <p className="text-lg text-muted-foreground leading-relaxed">{post.excerpt}</p>
             )}
             <p className="text-sm text-muted-foreground mt-6 pt-6 border-t border-border">
-              {new Date(post.published_at).toLocaleDateString("fr-BE", {
-                day: "numeric",
-                month: "long",
-                year: "numeric",
-              })}
+              {formatDateFr(post.published_at)}
             </p>
           </div>
 

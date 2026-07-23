@@ -9,6 +9,9 @@ import BlogSection from "@/components/BlogSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 
+// ISR : rafraîchit la section blog de la page d'accueil au plus toutes les 60 s.
+export const revalidate = 60;
+
 export const metadata: Metadata = {
   title: "Maysanté — Soins à domicile à Bruxelles",
   description:
